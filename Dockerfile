@@ -47,22 +47,22 @@ ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
 # Create non-root user
-RUN addgroup -S nodejs && adduser -S node -G nodejs
+#RUN addgroup -S nodejs && adduser -S node -G nodejs
 
 # --- Option A (recommended): Next.js standalone output ---
 # Requires next.config.js:  module.exports = { output: 'standalone' }
 #
 # This will work if standalone exists; if not, comment these lines
 # and use Option B below.
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
+#COPY --from=builder /app/.next/standalone ./
+#COPY --from=builder /app/.next/static ./.next/static
+#COPY --from=builder /app/public ./public
 
 # --- Option B (fallback): non-standalone ---
 # Uncomment this block if you do NOT use standalone output:
-# COPY --from=builder /app/package.json ./package.json
-# COPY --from=builder /app/node_modules ./node_modules
-# COPY --from=builder /app/.next ./.next
+ COPY --from=builder /app/package.json ./package.json
+ COPY --from=builder /app/node_modules ./node_modules
+ COPY --from=builder /app/.next ./.next
 # COPY --from=builder /app/public ./public
 # COPY --from=builder /app/next.config.* ./  # if present
 
