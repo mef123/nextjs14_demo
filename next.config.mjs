@@ -1,5 +1,4 @@
 // next.config.mjs
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -7,6 +6,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'nextjs.org',
         pathname: '/icons/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'unpkg.com', // Likely source for Heroicons
+        pathname: '/**',
       },
     ],
   },
